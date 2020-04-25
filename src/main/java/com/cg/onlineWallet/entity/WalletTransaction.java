@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +18,8 @@ public class WalletTransaction {
 	
 	@Id
 	@Column(name="transactionId")
-	@GeneratedValue
+	@GeneratedValue(generator="mygen",strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="mygen",sequenceName="transaction_sequence",allocationSize=1)
 	private int transactionId;
 	
 	@Column(name="description",length=15)
